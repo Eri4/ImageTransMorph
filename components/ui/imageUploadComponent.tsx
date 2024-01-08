@@ -4,14 +4,14 @@ import { useState } from 'react';
 import {inputFormats, outputFormats} from "@/utl/Const";
 
 export default function ImageConverter() {
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<File | null>(null);
     const [convertedImg, setConvertedImg] = useState('');
     const [format, setFormat] = useState('png');
     const [downloadUrl, setDownloadUrl] = useState('');
 
 
-    const handleImageChange = (e: { target: { files: any[]; }; }) => {
-        const file = e.target.files[0];
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file: File | null = e.target.files ? e.target.files[0] : null;
         setImage(file);
     };
 
