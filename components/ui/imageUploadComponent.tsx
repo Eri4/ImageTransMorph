@@ -10,7 +10,7 @@ export default function ImageConverter() {
     const [downloadUrl, setDownloadUrl] = useState('');
 
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e: { target: { files: any[]; }; }) => {
         const file = e.target.files[0];
         setImage(file);
     };
