@@ -1,6 +1,5 @@
 import sharp from 'sharp';
 import {NextRequest, NextResponse} from "next/server";
-import assert from "node:assert";
 import {inputFormats, outputFormats} from "@/utl/Const";
 
 export async function POST(req: NextRequest) {
@@ -11,7 +10,7 @@ export async function POST(req: NextRequest) {
         const fileData = data.get('file');
         const formatData = data.get('format');
 
-        if (!fileData || !(fileData instanceof File)) {
+        if (!fileData) {
             return new NextResponse(JSON.stringify({error: 'Invalid file data'}), {status: 400});
         }
 
@@ -19,29 +18,9 @@ export async function POST(req: NextRequest) {
             return new NextResponse(JSON.stringify({error: 'Invalid format'}), {status: 400});
         }
 
-        const fileStream = fileData.stream();
-
-        const fileBuffer: Buffer = await new Promise((resolve, reject) => {
-            const reader = fileStream.getReader();
-            const chunks: (Buffer | Uint8Array)[] = [];
-
-            const pump = async () => {
-                try {
-                    const { done, value } = await reader.read();
-                    if (done) {
-                        resolve(Buffer.concat(chunks));
-                    } else {
-                        chunks.push(value);
-                        await pump();
-                    }
-                } catch (err) {
-                    reject(err);
-                }
-            };
-
-            pump();
-        });
-
+        const fileBlob = fileData as Blob;
+        const arrayBuffer = await fileBlob.arrayBuffer();
+        const fileBuffer: Buffer = Buffer.from(arrayBuffer);
         const fileType = await sharp(fileBuffer).metadata();
 
         if (fileType.format && !inputFormats.includes(fileType.format)) {

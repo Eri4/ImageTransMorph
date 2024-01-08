@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import {useState} from 'react';
 import {inputFormats, outputFormats} from "@/utl/Const";
 
 export default function ImageConverter() {
@@ -49,46 +49,52 @@ export default function ImageConverter() {
     };
 
     return (
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="hero min-h-screen bg-base-200 flex flex-col items-center justify-center">
-                        <img src={convertedImg} className="max-w-sm rounded-lg shadow-2xl"/>
-                        {downloadUrl &&
-                            <a href={downloadUrl} download className="btn btn-outline btn-primary mt-4">Download Image</a>}
-                    </div>
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex flex-col md:flex-row-reverse">
+                <div className="form-section w-full md:w-auto">
 
-                    <div>
-                        <h1 className="text-5xl font-bold">Convert an image to one of those formats, free and with no
-                            data stored by us!</h1>
-                        <p className="py-6">JPEG, PNG, WEBP, AVIF, TIFF, BMP.</p>
+                    <h1 className="text-5xl font-bold">Convert an image to one of those formats, free and with
+                        no
+                        data stored by us!</h1>
+                    <p className="py-6">JPEG, PNG, WEBP, AVIF, TIFF, BMP.</p>
 
-                        <input type="file"
-                               id="imageUpload"
-                               name="imageUpload"
-                               accept="image/*"
-                               onChange={handleImageChange}
-                               className="file-input file-input-bordered file-input-success w-full max-w-xs"/>
+                    <input type="file"
+                           id="imageUpload"
+                           name="imageUpload"
+                           accept="image/*"
+                           onChange={handleImageChange}
+                           className="file-input file-input-bordered file-input-success w-full max-w-xs"/>
 
 
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">Select new format:</span>
-                            </div>
-                            <select className="select select-bordered" onChange={(e) => setFormat(e.target.value)}>
-                                {outputFormats.map((fmt) => (
-                                    <option value={fmt} key={fmt}>
-                                        {fmt.toUpperCase()}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="label">
-                            </div>
-                        </label>
+                    <label className="form-control w-full max-w-xs">
+                        <div className="label">
+                            <span className="label-text">Select new format:</span>
+                        </div>
+                        <select className="select select-bordered" onChange={(e) => setFormat(e.target.value)}>
+                            {outputFormats.map((fmt) => (
+                                <option value={fmt} key={fmt}>
+                                    {fmt.toUpperCase()}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="label">
+                        </div>
+                    </label>
 
-                        <button onClick={convertImage} className="btn btn-outline btn-success">Convert Image</button>
-                    </div>
+                    <button onClick={convertImage} className="btn btn-outline btn-success" >Convert Image
+                    </button>
+
                 </div>
+                <div className="hero min-h-screen bg-base-200 flex flex-col items-center justify-center">
+                    <img src={convertedImg} className="max-w-sm rounded-lg shadow-2xl"/>
+                    {downloadUrl &&
+                        <a href={downloadUrl} download className="btn btn-outline btn-primary mt-4">Download
+                            Image</a>}
+                </div>
+
+
             </div>
+        </div>
 
     );
 }
