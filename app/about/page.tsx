@@ -10,13 +10,16 @@ export default async function About() {
             <div className="flex flex-col space-y-6">
                 <div>
                     <h1 className="text-5xl font-bold text-center">About Us</h1>
-                    <h2 className="text-5xl font-bold text-center mt-8">Welcome to ImageTransMorph - Your Ultimate Image Conversion Tool!</h2>
+                    <h2 className="text-5xl font-bold text-center mt-8">Welcome to ImageTransMorph - Your Ultimate Image
+                        Conversion Tool!</h2>
                     <p className="py-6 text-justify mt-8">
                         At ImageTransMorph, we understand the importance of seamless image conversion for your creative
-                        projects. Whether you're a designer, photographer, or just someone looking to transform images
+                        projects. Whether you&apos;re a designer, photographer, or just someone looking to transform
+                        images
                         effortlessly, our user-friendly platform is here to simplify the process.
-
-                        <h4 className="text-2xl font-bold mt-8">Our Mission:</h4>
+                    </p>
+                    <h4 className="text-2xl font-bold mt-8">Our Mission:</h4>
+                    <p className="py-6 text-justify mt-8">
                         ImageTransMorph is dedicated to providing a hassle-free and efficient image conversion
                         experience. We believe in empowering users with the ability to effortlessly convert images
                         between various formats, making it easier for you to integrate visuals across different
@@ -33,7 +36,7 @@ export default async function About() {
                         <div className='font-bold'>Intuitive Interface:</div>
                         <li>Our user-friendly interface ensures a smooth and straightforward conversion process.</li>
                         <div className='font-bold'>Quick and Efficient:</div>
-                        <li>We understand the value of time. That's why ImageTransMorph is designed to deliver speedy
+                        <li>We understand the value of time. That&apos;s why ImageTransMorph is designed to deliver speedy
                             conversions without compromising on quality.
                         </li>
                         <div className='font-bold'>Privacy and Security:</div>
@@ -53,7 +56,7 @@ export default async function About() {
                         </li>
                         <div className='font-bold'>Download Your Transformed Image:</div>
                         <li>Once the conversion is complete, simply download your
-                            transformed image. It's that easy!
+                            transformed image. It&apos;s that easy!
                         </li>
                     </ol>
                 </div>
