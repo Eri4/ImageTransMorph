@@ -8,6 +8,7 @@ export default function ImageConverter() {
     const [convertedImg, setConvertedImg] = useState('');
     const [format, setFormat] = useState('png');
     const [downloadUrl, setDownloadUrl] = useState('');
+    const [isConverting, setIsConverting] = useState(false);
 
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,8 @@ export default function ImageConverter() {
             console.error('Invalid format selected');
             return;
         }
+
+        setIsConverting(true);
 
         const formData = new FormData();
         formData.append('file', image);
@@ -45,11 +48,13 @@ export default function ImageConverter() {
             setDownloadUrl(URL.createObjectURL(blob));
         } catch (error) {
             console.error('Error converting image:', error);
+        } finally {
+            setIsConverting(false);
         }
     };
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 mt-8">
             <div className="hero-content flex flex-col md:flex-row-reverse">
                 <div className="form-section w-full md:w-auto">
 
@@ -81,17 +86,22 @@ export default function ImageConverter() {
                         </div>
                     </label>
 
-                    <button onClick={convertImage} className="btn btn-outline btn-success" >Convert Image
+                    <button onClick={convertImage} className="btn btn-outline btn-success">Convert Image
                     </button>
 
                 </div>
                 <div className="hero min-h-screen bg-base-200 flex flex-col items-center justify-center">
-                    <img src={convertedImg} className="max-w-sm rounded-lg shadow-2xl"/>
-                    {downloadUrl &&
-                        <a href={downloadUrl} download className="btn btn-outline btn-primary mt-4">Download
-                            Image</a>}
+                    {isConverting ?
+                        (<span className="loading loading-dots loading-md"></span>) : (
+                            <>
+                                <img src={convertedImg} className="max-w-sm rounded-lg shadow-2xl"/>
+                                {downloadUrl &&
+                                    <a href={downloadUrl} download className="btn btn-outline btn-primary mt-4">Download
+                                        Image</a>}
+                            </>
+                        )
+                    }
                 </div>
-
 
             </div>
         </div>
